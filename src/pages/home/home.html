@@ -1,0 +1,72 @@
+<ion-content class="backgroundGeral">
+
+<div><img src="assets/imgs/header.svg" style="width: 100%;position: absolute;"></div>
+
+<div class="labelTituloCriar">Criar um novo jogo</div>
+<div class="labelSubTituloCriar">Crie um novo jogo ou carregue um já criado</div>
+
+
+<ion-slides  pager="false" class="slidesDestaques" slidesPerView="1.6" spaceBetween="1">
+
+    <ion-slide>
+      <div class="cardCriarJogo">
+          <div class="icoCardCriar"><img src="assets/imgs/icoCacaQrcode.svg" ></div>
+          <div class="bgCardCriar" style="margin-top: -8px;margin-right: 7px;"><img src="assets/imgs/imgLupa.svg" ></div>
+          <div class="tituloCard">Caçando o QRCode</div>
+          <div class="subTituloCard">Crie pistas que levam aos QRCodes escondidos</div>
+          <div class="botaoCard" (click)="criarJogo()">CRIAR</div>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="cardCriarJogo">
+        <div class="icoCardCriar"><img src="assets/imgs/icoCodigo.svg" ></div>
+        <div class="bgCardCriar" style="margin-top: -17px;margin-right: 4px;"><img src="assets/imgs/icoCampoCodigo.svg" ></div>
+        <div class="tituloCard">Recebeu um Código?</div>
+        <div class="subTituloCard">Alguém enviou o código de um jogo pra você?</div>
+        <div class="botaoCard">INFORMAR</div>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="cardCriarJogoDicas">
+      <img src="assets/imgs/imgDicasLampada.svg" class="imgLampadaDicas">
+      <div class="tituloCardEspecial">Que tal algumas<br><span style="font-size:20px">Ideias e Dicas?</span></div>
+
+
+      </div>
+    </ion-slide>
+
+
+
+</ion-slides>
+
+<div class="divisorWrapper">
+<div class="divisordestaque"></div>
+</div>
+
+
+<div class="labelTituloJogar">Hora de Jogar!</div>
+<div class="labelSubTituloJogar">Tudo que você criou está aqui</div>
+
+<div class="listaJogos">
+    <div class="itemJogo">
+        <img src="assets/imgs/imgTipoQR.svg" style="margin-top: 20px;margin-left: 12px;">
+        <div class="labelTituloJogoCriado">Jogo de Aniversário</div>
+        <div class="labelQtPistasJogoCriado">Este jogo possui 12 pistas</div>
+    </div>
+
+    <div class="itemJogo">
+        <img src="assets/imgs/imgTipoQR.svg" style="margin-top: 20px;margin-left: 12px;">
+        <div class="labelTituloJogoCriado">Jogo de Aniversário</div>
+        <div class="labelQtPistasJogoCriado">Este jogo possui 12 pistas</div>
+    </div>
+
+    <div class="itemJogo">
+        <img src="assets/imgs/imgTipoQR.svg" style="margin-top: 20px;margin-left: 12px;">
+        <div class="labelTituloJogoCriado">Jogo de Aniversário</div>
+        <div class="labelQtPistasJogoCriado">Este jogo possui 12 pistas</div>
+    </div>
+</div>
+
+</ion-content>

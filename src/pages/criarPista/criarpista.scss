@@ -1,0 +1,98 @@
+.divNumeroPista{
+  background: #7EB873;
+  border-radius: 4px;
+  width: 143px;
+  height: 25px;
+  margin-top: -13px;
+  position: absolute;
+  margin-left: 97px;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 3px;
+}
+
+
+.boxCriaPista{
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.322803);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.322803);
+  border-radius: 4px;
+
+  width: 95%;
+  position: absolute;
+height: 659px;
+  margin-top: 62px;
+  margin-left: 9px;
+}
+
+.codigoCadastro{
+  background: #FFFFFF;
+      margin-left: 15px;
+      margin-top: 26px;
+      width: 92%;
+      text-align: center;
+      padding-top: 22px;
+      font-size: 50px;
+      letter-spacing: 11px;
+      height: 120px;
+      -webkit-box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+      box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.bullet {
+    width: 20px;
+    height: 20px;
+    border-radius: 37px;
+    line-height: 14px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    margin-left: 12px;
+    font-size: 13px;
+    background-color: #59C0EF;
+}
+
+.imgQrCodeCadastro{
+  width: 100%;
+  text-align: center;
+  margin-top: 39px;
+}
+
+.descricaoPista {
+  background: #FDFDFD;
+  border: 1px solid #CFD8E1;
+  width: 94%;
+  margin-left: 3%;
+  font-size: 13px;
+  color: #666666;
+  padding-left: 5px;
+  line-height: 20px;
+  margin-top: 18px;
+  position: absolute;
+  height: 10em;
+}
+
+
+.segment-md .segment-button.activated, .segment-md .segment-button.segment-activated {
+    border-color: #7eb873;
+    opacity: 1;
+    color: #515151;
+    font-weight: bold;
+    font-family: Montserrat-Bold;
+    font-size: 12px;
+}
+
+.segment-md .segment-button {
+    font-weight: bold;
+    font-family: Montserrat-Bold;
+    font-size: 12px;
+}
+
+.labelTituloDescricao{
+  font-family: Montserrat-Bold;
+      color: #494949;
+      font-size: 12px;
+      margin-left: 37px;
+      letter-spacing: -0.4px;
+      width: 86%;
+}

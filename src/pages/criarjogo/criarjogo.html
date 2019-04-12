@@ -1,0 +1,48 @@
+<ion-content class="backgroundGeral">
+
+<div class="bgCardCriar"><img src="assets/imgs/imgLupaCriar.svg" ></div>
+<div><img src="assets/imgs/header.svg" style="width: 100%;position: absolute;z-index: -10;"></div>
+<div class="labelTituloCriar">Caça ao QRCode</div>
+<div class="labelSubTituloCriar">Aqui você vai criar seu jogo! Seja criativo!</div>
+
+<div class="boxPasso1">
+<ion-badge  item-end class="badgePasso">1</ion-badge>
+<div class="labelTituloPasso">Qual é o nome que você quer dar para este jogo?</div>
+<div class="labelSubTituloPasso">Ex: Jogo de Aniversário, Caça Surpresa, etc...</div>
+<ion-input class="inputNomeJogo" type="text"></ion-input>
+
+ <button ion-button class="botaoCriarJogo"  >CRIAR</button>
+</div>
+
+<div class="boxPasso2">
+    <ion-badge  item-end class="badgePasso">2</ion-badge>
+    <div class="labelTituloPasso">Hora de adicionar as pistas! Toque no botão abaixo para criar uma nova pista:</div>
+
+    <div class="boxAdicionar" (click)="adicionarPistas()"><ion-icon name="add"></ion-icon></div>
+
+    <div class="boxPista">
+      <img src="assets/imgs/qrcodeMini.svg" class="imgQrcodemini">
+      <div class="labelNumeroPista">Pista 1</div>
+      <div class="labelPreviewTextoPista">Esta pista está escondida em um lugar muito difícil de encontrar</div>
+    </div>
+
+    <div class="boxPista">
+      <img src="assets/imgs/qrcodeMini.svg" class="imgQrcodemini">
+      <div class="labelNumeroPista">Pista 1</div>
+      <div class="labelPreviewTextoPista">Esta pista está escondida em um lugar muito difícil de encontrar</div>
+    </div>
+
+    <div class="boxPista">
+      <div class="labelPistaCodigo">1234</div>
+      <div class="labelNumeroPista">Pista 1</div>
+      <div class="labelPreviewTextoPista">Esta pista está escondida em um lugar muito difícil de encontrar</div>
+    </div>
+
+
+ <button ion-button class="botaoCriarJogo" style="margin-top:32px">FINALIZAR</button>
+<br><br>
+</div>
+
+
+
+</ion-content>

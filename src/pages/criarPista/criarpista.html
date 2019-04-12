@@ -1,0 +1,52 @@
+<ion-content class="backgroundGeral">
+
+<div><img src="assets/imgs/header.svg" style="width: 100%;position: absolute;z-index: -10;"></div>
+
+
+<div class="boxCriaPista">
+<div class="divNumeroPista">Pista 2</div>
+<ion-badge  item-end class="bullet" style="margin-top: 43px;">1</ion-badge>
+<div class="labelTituloDescricao" style="margin-top: 44px;">Escreva a pista que você dará ao seu jogador. Este é o lugar em que você vai esconder o qrcode:</div>
+
+
+<textarea  type="text" value=""  maxLength="1500" class="descricaoPista" >sdfasdfdd</textarea>
+
+
+
+<div padding style="margin-top: 175px;">
+  <ion-segment [(ngModel)]="tipoPista">
+    <ion-segment-button value="qrcode">
+      Vou usar QRCode
+    </ion-segment-button>
+    <ion-segment-button value="codigo">
+      Vou usar Código
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+
+<div [ngSwitch]="tipoPista">
+  <ion-list *ngSwitchCase="'qrcode'">
+    <ion-badge  item-end class="bullet">2</ion-badge>
+    <div class="labelTituloDescricao">Agora escaneie um QRCode que será escondido:</div>
+    <div class="imgQrCodeCadastro"><img src="assets/imgs/imgQrcodeCadastro.svg" ></div>
+  </ion-list>
+
+
+  <ion-list *ngSwitchCase="'codigo'">
+    <ion-badge  item-end class="bullet">2</ion-badge>
+    <div class="labelTituloDescricao">Escreva este código em um pedaço de papel e esconda no local que você escolheu. Ele será usado para desbloquear a próxima pista.</div>
+    <div class="codigoCadastro">3425</div>
+  </ion-list>
+</div>
+
+
+ <button ion-button class="botaoCriarJogo"  >INCLUIR ESTA PISTA</button>
+
+
+</div>
+
+
+
+
+</ion-content>

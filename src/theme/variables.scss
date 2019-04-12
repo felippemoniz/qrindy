@@ -1,0 +1,183 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: "../assets/fonts";
+
+
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+
+
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+
+
+
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary:    #3d417f,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222
+);
+
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+
+
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";
+
+
+@font-face {
+    font-family: 'Montserrat-Black';
+    src: url('../assets/fonts/Montserrat-Black.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-BlackItalic';
+    src: url('../assets/fonts/Montserrat-BlackItalic.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-Bold';
+    src: url('../assets/fonts/Montserrat-Bold.ttf');
+}
+@font-face {
+    font-family: 'Montserrat-BoldItalic';
+    src: url('../assets/fonts/Montserrat-BoldItalic.ttf');
+}
+@font-face {
+    font-family: 'Montserrat-ExtraBold';
+    src: url('../assets/fonts/Montserrat-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-ExtraBoldItalic';
+    src: url('../assets/fonts/Montserrat-ExtraBoldItalic.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-ExtraLight';
+    src: url('../assets/fonts/Montserrat-ExtraLight.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-ExtraLightItalic';
+    src: url('../assets/fonts/Montserrat-ExtraLightItalic.ttf');
+}
+@font-face {
+    font-family: 'Montserrat-Italic';
+    src: url('../assets/fonts/Montserrat-Italic.ttf');
+}
+@font-face {
+    font-family: 'Montserrat-Light';
+    src: url('../assets/fonts/Montserrat-Light.ttf');
+}
+@font-face {
+    font-family: 'Montserrat-LightItalic';
+    src: url('../assets/fonts/Montserrat-LightItalic.ttf');
+}
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('../assets/fonts/Montserrat-Medium.ttf');
+}
+@font-face {
+    font-family: 'Montserrat-MediumItalic';
+    src: url('../assets/fonts/Montserrat-MediumItalic.ttf');
+}
+
+
+@font-face {
+    font-family: 'Montserrat-Regular';
+    src: url('../assets/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-MediumItalic';
+    src: url('../assets/fonts/Montserrat-MediumItalic.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-SemiBold';
+    src: url('../assets/fonts/Montserrat-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-SemiBoldItalic';
+    src: url('../assets/fonts/Montserrat-SemiBoldItalic.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-Thin';
+    src: url('../assets/fonts/Montserrat-Thin.ttf');
+}
+
+
+@font-face {
+    font-family: 'Montserrat-ThinItalic';
+    src: url('../assets/fonts/Montserrat-ThinItalic.ttf');
+}
+
+
+$font-family-ios-base: Montserrat-Regular;
+$font-family-md-base:Montserrat-Regular;
