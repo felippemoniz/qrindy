@@ -37,7 +37,7 @@ export class HomePage {
 
 
   carregarListaJogos(){
-    this.dbProvider.initDB("","20");
+    this.dbProvider.initDB("","28");
     this.dbProvider.executeSql("select tbJogo.*, count(tbPista.id_pista)  qtPistas from " +
                               "tb_jogo tbJogo " +
                               "left join  tb_Pista tbPista " +

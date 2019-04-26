@@ -4,6 +4,7 @@ import { DbProvider } from '../../providers/db/db';
 import { AuxiliarProvider } from '../../providers/auxiliar/auxiliar';
 import { PreparacaoPage } from '../preparacao/preparacao';
 import {Storage} from '@ionic/storage'
+import { LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -15,6 +16,8 @@ export class DetalharJogo {
   public idJogo ;
   public nomeJogo;
   public qtPistas;
+  public progressoJogo =[];
+  public listaPistas;
 
   constructor(public navCtrl: NavController,
               private navParams: NavParams,
@@ -24,11 +27,77 @@ export class DetalharJogo {
               private alertCtrl: AlertController,
               public toastCtrl: ToastController = null,
               public modalCtrl: ModalController=null,
+              public loadingCtrl: LoadingController = null,
               public auxiliarProvider: AuxiliarProvider=null) {
 
               this.idJogo = navParams.get('idJogo');
               this.consultarJogo(this.idJogo);
 
+  }
+
+
+  ionViewDidLoad() {
+    this.consultaProgresso();
+  }
+
+
+  consultaProgresso(){
+    let loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Carregando o jogo...'
+    });
+
+    loading.present();
+    this.carregarListaPistas(this.idJogo)
+
+    this.carregarListaPistas(this.idJogo).then (lista => {
+          this.listaPistas = lista;
+          //Verifica se tem progresso anterior, se tiver, atualiza as pistas já encontradas
+                this.storage.get('progresso_'+this.idJogo).then((result) => {
+                  if (result){
+                    this.progressoJogo = result;
+                    this.recuperaProgressoJogo();
+                  }
+                });
+          }, () => {
+             loading.dismiss();
+        });
+
+    loading.dismiss();
+  }
+
+
+
+  recuperaProgressoJogo(){
+    var lista = this.listaPistas;
+    var progresso = this.progressoJogo;
+
+    for (let i = 0; i < lista.length; i+=1){
+      var pista = lista[i];
+      if (progresso.indexOf(pista.id_pista)!=-1){
+        this.atualizarPista(pista.id_pista)
+      }
+    }
+    this.listaPistas = lista;
+  }
+
+
+  atualizarPista(id_pista){
+    var lista = this.listaPistas;
+    var proximaPista;
+    for (let i = 0; i < lista.length; i+=1){
+      var pista = lista[i];
+      if (pista.id_pista == id_pista){
+          pista.status = 2; //pista resolvida
+              //Libera a próxima pista
+              if (i<lista.length-1){
+                pista = lista[i+1];
+                pista.status = 1; //pista liberada
+              }
+          break;
+      }
+    }
+    this.listaPistas = lista;
   }
 
 
@@ -40,7 +109,7 @@ export class DetalharJogo {
 
   consultarJogo(idJogo){
 
-    this.dbProvider.initDB("","20");
+    this.dbProvider.initDB("","28");
     this.dbProvider.executeSql("select tbJogo.*, count(tbPista.id_pista)  qtPistas from " +
                               "tb_jogo tbJogo " +
                               "left join  tb_Pista tbPista " +
@@ -49,7 +118,6 @@ export class DetalharJogo {
                               " group by tbJogo.id_jogo").then( obj  => {
     this.nomeJogo = obj[0].nm_jogo;
     this.qtPistas = obj[0].qtPistas;
-
 
     }, () => {
       console.log("Erro")
@@ -121,6 +189,7 @@ export class DetalharJogo {
 
   zerarProgresso(id_jogo){
     this.storage.remove('progresso_'+id_jogo);
+    this.consultaProgresso();
     this.exibeAlerta("O jogo foi reiniciado com sucesso!")
   }
 
@@ -143,11 +212,32 @@ export class DetalharJogo {
   }
 
 
+  carregarListaPistas(idJogo){
+
+    return new Promise((resolve, reject) => {
+            this.dbProvider.initDB("","28");
+            this.dbProvider.executeSql("select *,0 as status from tb_Pista where id_jogo="+ idJogo ).then( obj  => {
+            resolve(obj);
+          }, (err) => {
+            reject(err)
+          });
+
+      });
+  }
+
 
   jogar(idJogo,nomeJogo,qtPistas){
          let jogarModal = this.modalCtrl.create(PreparacaoPage,{idJogo:idJogo,nomeJogo:nomeJogo,qtPistas:qtPistas});
+         jogarModal.onDidDismiss(() => {
+           this.consultaProgresso();
+         });
+
          jogarModal.present();
   }
+
+
+
+
 
 
 

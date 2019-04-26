@@ -26,6 +26,10 @@ public jogo: jogo;
               this.jogo.nomeJogo = navParams.get('nomeJogo');
               this.jogo.qtPistas = navParams.get('qtPistas');
 
+              console.log("--> "+ navParams.get('idJogo'))
+              console.log("--> "+ navParams.get('nomeJogo'))
+              console.log("--> "+ navParams.get('qtPistas'))
+
 
   }
 

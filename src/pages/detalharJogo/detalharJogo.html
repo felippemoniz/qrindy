@@ -8,6 +8,14 @@
 
 <div class="boxProgressoJogo">
 
+  <div class="listaPistasDetalhes">
+        <span *ngFor="let pista of listaPistas">
+          <img *ngIf="pista.status!=2" src="assets/imgs/slotPistaVazio.svg" style="width: 6%;margin-right: 2px;">
+          <img *ngIf="pista.status==2" src="assets/imgs/checked.svg" class="delayStatus" style="width: 6%;margin-right: 2px;">
+        </span>
+        <img src="assets/imgs/treasure.svg" style="width: 8%;">
+  </div>
+
 </div>
 
 

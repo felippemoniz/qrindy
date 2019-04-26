@@ -32,7 +32,7 @@ export class JogoQrCodePage {
   constructor(public navCtrl: NavController,
               public dbProvider: DbProvider,
               public viewCtrl: ViewController,
-            //  private barcodeScanner : BarcodeScanner,
+              private barcodeScanner : BarcodeScanner,
               private alertCtrl: AlertController,
               //private nativeAudio: NativeAudio,
               public storage: Storage,
@@ -47,7 +47,7 @@ export class JogoQrCodePage {
   //            this.nativeAudio.preloadComplex('venceu', 'assets/audio/fimJogo.wav', 1, 1, 0);
 
   }
-/*
+
   ionViewDidLoad() {
     console.log("###########---->" + this.jogo.idJogo)
     this.carregarListaPistas(this.jogo.idJogo)
@@ -87,7 +87,7 @@ export class JogoQrCodePage {
 
     loading.present();
 
-    this.dbProvider.initDB("","5");
+    this.dbProvider.initDB("","28");
     this.dbProvider.executeSql("select *,0 as status from tb_Pista where id_jogo="+ idJogo ).then( obj  => {
     this.listaPistas = obj;
 
@@ -101,12 +101,12 @@ export class JogoQrCodePage {
 
   achei(id_pista,nu_codigoValidacaoPista){
 
-    this.options = {formats: "QR_CODE",prompt:"Escaneie o QRCODE da pista", resultDisplayDuration: 0}
+//    this.options = {formats: "QR_CODE",prompt:"Escaneie o QRCODE da pista", resultDisplayDuration: 0}
 
-    this.barcodeScanner.scan(this.options).then(barcodeData=> {
-        if (barcodeData.text!=""){
-            if (barcodeData.text == nu_codigoValidacaoPista){
-               this.nativeAudio.play('sucesso');
+//    this.barcodeScanner.scan(this.options).then(barcodeData=> {
+//        if (barcodeData.text!=""){
+//            if (barcodeData.text == nu_codigoValidacaoPista){
+//               this.nativeAudio.play('sucesso');
                this.atualizarPista(id_pista);
                this.atualizarProgresso(id_pista);
                var delay = setInterval(() => {
@@ -114,12 +114,12 @@ export class JogoQrCodePage {
                  clearInterval(delay);
                },1000);
 
-            }else{
-              this.nativeAudio.play('fracasso');
-              this.atualizarPistaErrada(id_pista);
-            }
-        }
-    })
+//            }else{
+//              this.nativeAudio.play('fracasso');
+//              this.atualizarPistaErrada(id_pista);
+//            }
+//        }
+//    })
   }
 
 
@@ -135,7 +135,7 @@ export class JogoQrCodePage {
     this.slides.slideNext();
     if (this.slides.isEnd()){
       this.jogoFim = true;
-      this.nativeAudio.play('venceu');
+      //this.nativeAudio.play('venceu');
       this.slides.lockSwipes(true);
       this.storage.remove('progresso_'+this.jogo.idJogo);
     }
@@ -208,5 +208,5 @@ export class JogoQrCodePage {
     alert.present();
 
   }
-*/
+
 }
