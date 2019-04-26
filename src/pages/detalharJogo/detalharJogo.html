@@ -1,0 +1,46 @@
+<ion-content class="backgroundGeral">
+
+<div class="botaoVoltar" style="color:#FFFFFF" (click)="voltar()"><ion-icon name="md-arrow-back" ></ion-icon></div>
+
+<div><img src="assets/imgs/bgDetalhes.svg" style="width: 100%;position: absolute;"></div>
+<div class="labelDetalheNomeJogo">{{nomeJogo}}</div>
+<div class="labelDetalhesPistasJogo">Este jogo possui {{qtPistas}} pistas (qrcodes)</div>
+
+<div class="boxProgressoJogo">
+
+</div>
+
+
+<div class="boxOpcoesJogo">
+
+<button  ion-button class="botaoCriarJogo" style="height: 44px;" (tap)="jogar(idJogo, nomeJogo, qtPistas)">JOGAR AGORA</button>
+
+<div class="botaoOpcoesDetalheJogo" (click)="reiniciaJogo(idJogo)">
+  <img src="assets/imgs/icoReiniciar.svg" class="icoBotaoDetalhes">
+  <div class="divisorVerticalPequeno"></div>
+  <div class="labelBotaoDetalhesJogo"><b>Reiniciar</b> este jogo</div>
+</div>
+
+<div class="botaoOpcoesDetalheJogo" style="margin-top: 165px;">
+  <img src="assets/imgs/icoCompartilhar.svg" class="icoBotaoDetalhes">
+  <div class="divisorVerticalPequeno"></div>
+  <div class="labelBotaoDetalhesJogo"><b>Enviar</b> este jogo para alguém</div>
+</div>
+
+<div class="botaoOpcoesDetalheJogo" style="margin-top: 219px;">
+  <img src="assets/imgs/icoEditar.svg" class="icoBotaoDetalhes">
+  <div class="divisorVerticalPequeno"></div>
+  <div class="labelBotaoDetalhesJogo"><b>Ver detalhes/alterar</b> este jogo</div>
+</div>
+
+<div class="botaoOpcoesDetalheJogo" style="margin-top: 274px;" (click)="excluirJogo(idJogo)">
+  <img src="assets/imgs/icoApagar.svg" class="icoBotaoDetalhes">
+  <div class="divisorVerticalPequeno"></div>
+  <div class="labelBotaoDetalhesJogo"><b>Apagar</b> este jogo</div>
+</div>
+
+
+</div>
+
+
+</ion-content>

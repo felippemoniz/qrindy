@@ -49,23 +49,11 @@
 <div class="labelTituloJogar">Hora de Jogar!</div>
 <div class="labelSubTituloJogar">Tudo que você criou está aqui</div>
 
-<div class="listaJogos">
-    <div class="itemJogo">
+<div class="listaJogos" *ngIf="listaJogos">
+    <div class="itemJogo" *ngFor=" let jogo of listaJogos" (click)="detalharJogo(jogo.id_jogo)">
         <img src="assets/imgs/imgTipoQR.svg" style="margin-top: 20px;margin-left: 12px;">
-        <div class="labelTituloJogoCriado">Jogo de Aniversário</div>
-        <div class="labelQtPistasJogoCriado">Este jogo possui 12 pistas</div>
-    </div>
-
-    <div class="itemJogo">
-        <img src="assets/imgs/imgTipoQR.svg" style="margin-top: 20px;margin-left: 12px;">
-        <div class="labelTituloJogoCriado">Jogo de Aniversário</div>
-        <div class="labelQtPistasJogoCriado">Este jogo possui 12 pistas</div>
-    </div>
-
-    <div class="itemJogo">
-        <img src="assets/imgs/imgTipoQR.svg" style="margin-top: 20px;margin-left: 12px;">
-        <div class="labelTituloJogoCriado">Jogo de Aniversário</div>
-        <div class="labelQtPistasJogoCriado">Este jogo possui 12 pistas</div>
+        <div class="labelTituloJogoCriado">{{jogo.nm_jogo}}</div>
+        <div class="labelQtPistasJogoCriado">Este jogo tem <b>{{jogo.qtPistas}} pistas!</b></div>
     </div>
 </div>
 

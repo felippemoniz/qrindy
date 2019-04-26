@@ -1,45 +1,37 @@
 <ion-content class="backgroundGeral">
 
+<div class="botaoVoltar" style="color:#FFFFFF" (click)="voltar()"><ion-icon name="md-arrow-back" ></ion-icon></div>
+
 <div class="bgCardCriar"><img src="assets/imgs/imgLupaCriar.svg" ></div>
 <div><img src="assets/imgs/header.svg" style="width: 100%;position: absolute;z-index: -10;"></div>
-<div class="labelTituloCriar">Caça ao QRCode</div>
-<div class="labelSubTituloCriar">Aqui você vai criar seu jogo! Seja criativo!</div>
+<div class="labelTituloCriarInterno">Caça ao QRCode</div>
+<div class="labelSubTituloCriarInterno">Aqui você vai criar seu jogo! Seja criativo!</div>
 
 <div class="boxPasso1">
 <ion-badge  item-end class="badgePasso">1</ion-badge>
 <div class="labelTituloPasso">Qual é o nome que você quer dar para este jogo?</div>
 <div class="labelSubTituloPasso">Ex: Jogo de Aniversário, Caça Surpresa, etc...</div>
-<ion-input class="inputNomeJogo" type="text"></ion-input>
+<ion-input *ngIf="idJogo==null" class="inputNomeJogo" [(ngModel)]="inputNomeJogo" type="text"></ion-input>
+<div *ngIf="idJogo!=null"class="inputNomeJogoGravado">{{inputNomeJogo}}</div>
 
- <button ion-button class="botaoCriarJogo"  >CRIAR</button>
-</div>
+ <button  *ngIf="idJogo==null" ion-button class="botaoCriarJogo" (click)="criarJogo()" >CRIAR</button>
+</div> 
 
-<div class="boxPasso2">
+<div class="boxPasso2" *ngIf="flagNomeInformado==true">
     <ion-badge  item-end class="badgePasso">2</ion-badge>
     <div class="labelTituloPasso">Hora de adicionar as pistas! Toque no botão abaixo para criar uma nova pista:</div>
 
-    <div class="boxAdicionar" (click)="adicionarPistas()"><ion-icon name="add"></ion-icon></div>
+    <div class="boxAdicionar" (click)="adicionarPistas(idJogo)"><ion-icon name="add"></ion-icon> &nbsp;Incluir Pista</div>
 
-    <div class="boxPista">
-      <img src="assets/imgs/qrcodeMini.svg" class="imgQrcodemini">
-      <div class="labelNumeroPista">Pista 1</div>
-      <div class="labelPreviewTextoPista">Esta pista está escondida em um lugar muito difícil de encontrar</div>
-    </div>
-
-    <div class="boxPista">
-      <img src="assets/imgs/qrcodeMini.svg" class="imgQrcodemini">
-      <div class="labelNumeroPista">Pista 1</div>
-      <div class="labelPreviewTextoPista">Esta pista está escondida em um lugar muito difícil de encontrar</div>
-    </div>
-
-    <div class="boxPista">
-      <div class="labelPistaCodigo">1234</div>
-      <div class="labelNumeroPista">Pista 1</div>
-      <div class="labelPreviewTextoPista">Esta pista está escondida em um lugar muito difícil de encontrar</div>
+    <div class="boxPista" *ngFor=" let pista of listaPistas" (click)="editarPista(pista.id_pista)">
+      <img *ngIf="pista.tp_pista==1" src="assets/imgs/qrcodeMini.svg" class="imgQrcodemini">
+      <div *ngIf="pista.tp_pista==2" class="labelPistaCodigo">{{pista.nu_codigoValidacaoPista}}</div>
+      <div class="labelNumeroPista">Pista {{pista.nu_ordem}}</div>
+      <div class="labelPreviewTextoPista"> {{pista.txt_pista}}</div>
     </div>
 
 
- <button ion-button class="botaoCriarJogo" style="margin-top:32px">FINALIZAR</button>
+ <button ion-button class="botaoCriarJogo" style="margin-top:32px" (click)="finalizarPistas()">FINALIZAR</button>
 <br><br>
 </div>
 

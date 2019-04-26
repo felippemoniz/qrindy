@@ -1,0 +1,163 @@
+
+<ion-content class="backgroundJogar">
+  <div class="botaoFechar"  style="z-index:99"><ion-icon name="ios-close" (tap)="fechar()"></ion-icon></div>
+
+
+
+
+<div *ngIf="!jogoFim" class="labelNomeJogo">{{jogo.nomeJogo}}</div>
+<div *ngIf="!jogoFim" class="labelQtdePistas">{{jogo.qtPistas}} Pistas</div>
+
+<ion-slides  pager="false" class="slidesPistas">
+
+  <ion-slide *ngFor=" let pista of listaPistas; let last = last; let i = index">
+
+    <!--######## Pista liberada #########-->
+    <div *ngIf="pista.status!=0">
+        <div class="cardPista">
+          <div *ngIf="!last" class="boxLabelPista">Pista {{i+1}}</div>
+          <div *ngIf="last" class="boxLabelPista">Pista Final</div>
+          <div class="textoPista">{{pista.txt_pista}}</div>
+        </div>
+
+        <div class="bordaQrCode"></div>
+        <img *ngIf="pista.status==1" src="assets/imgs/qrcode.svg" style="width: 26%;" class="imgQrcodeVazio" (tap)="achei(pista.id_pista,pista.nu_codigoValidacaoPista)">
+        <img *ngIf="pista.status==2" src="assets/imgs/qrcodeok.svg" style="width: 26%;" class="imgQrcodeOk">
+        <img *ngIf="pista.status==3" src="assets/imgs/qrcodeerro.svg" style="width: 26%;" class="imgQrcodeOk" (tap)="achei(pista.id_pista,pista.nu_codigoValidacaoPista)">
+
+
+        <button *ngIf="pista.status==1 || pista.status==3" ion-button class="botaoAchei" (tap)="achei(pista.id_pista,pista.nu_codigoValidacaoPista)" >ACHEI O QRCODE!</button>
+        <button *ngIf="pista.status==2 && !jogoFim" ion-button class="botaoProximo" (tap)="proxima()" >PRÓXIMA PISTA ></button>
+        <button *ngIf="pista.status==2 && jogoFim" ion-button class="botaoProximo" (tap)="proxima()" >ENCERRAR JOGO ></button>
+
+    </div>
+
+    <!-- ###### Pista bloqueada #######-->
+    <div *ngIf="pista.status==0">
+
+      <div class="cardPista">
+        <div *ngIf="!last" class="boxLabelPista">Pista {{i+1}}</div>
+        <div *ngIf="last" class="boxLabelPista">Pista Final</div>
+        <img src="assets/imgs/lock.svg" style="width: 26%;" class="cadeado" >
+        <div class="labelTituloPistaBloqueada"> Pista Bloqueada!</div>
+        <div class="labelSubtituloPistaBloqueada"> Você deve descobrir a pista anterior primeiro.</div>
+      </div>
+
+    </div>
+
+  </ion-slide>
+
+
+
+ <!-- Slide final de fim da caçada -->
+  <ion-slide >
+
+    <div *ngIf="jogoFim" class="conteinerParabens">
+      <img src="assets/imgs/medal.svg" style="width: 40%;">
+      <div class="labelParabens">Parabéns!</div>
+      <div class="labelSubParabens">Você chegou ao final da caça ao tesouro!</div>
+
+      <button  ion-button class="botaoSair" (tap)="fechar()" >SAIR</button>
+    </div>
+
+  </ion-slide>
+
+
+</ion-slides>
+
+
+<!-- FOOTER -->
+
+<ion-footer no-shadow style="height: 62px">
+  <ion-toolbar position="bottom">
+
+    <div class="listaPistas">
+          <span *ngFor="let pista of listaPistas">
+            <img *ngIf="pista.status!=2" src="assets/imgs/slotPistaVazio.svg" style="width: 6%;margin-right: 2px;">
+            <img *ngIf="pista.status==2" src="assets/imgs/checked.svg" class="delayStatus" style="width: 6%;margin-right: 2px;">
+          </span>
+          <img src="assets/imgs/treasure.svg" style="width: 8%;">
+    </div>
+
+  </ion-toolbar>
+</ion-footer>
+
+
+
+
+
+
+
+
+
+
+<!--
+<div *ngIf="!jogoFim" class="headerDetalhesJogo" >
+      <div class="imgJogo"><img src="assets/imgs/medal.svg" style="width: 12%;"></div>
+      <div class="labelNomeJogo">{{jogo.nomeJogo}}</div>
+      <div class="labelQtdePistas">{{jogo.qtPistas}} Pistas</div>
+
+      <div class="listaPistas">
+            <span *ngFor="let pista of listaPistas">
+              <img *ngIf="pista.status!=2" src="assets/imgs/slotPistaVazio.svg" style="width: 8%;margin-right: 2px;">
+              <img *ngIf="pista.status==2" src="assets/imgs/checked.svg" class="delayStatus" style="width: 8%;margin-right: 2px;">
+            </span>
+            <img src="assets/imgs/treasure.svg" style="width: 8%;">
+      </div>
+</div>
+
+
+
+<ion-slides  pager="false" class="slidesPistas">
+
+      <ion-slide *ngFor=" let pista of listaPistas; let last = last; let i = index">
+
+        <div *ngIf="pista.status!=0">
+                <div *ngIf="!last" class="labelTituloPista">Pista {{i+1}}</div>
+                <div *ngIf="last" class="labelTituloPista">Última Pista!</div>
+                <div class="textoPista">
+                    <img src="assets/imgs/aspas1.svg" style="width: 6%;" class="aspasInicio">
+                    {{pista.txt_pista}}
+                    <img src="assets/imgs/aspas2.svg" style="width: 6%;" class="aspasFim">
+                </div>
+                <img *ngIf="pista.status==1" src="assets/imgs/qrcode.svg" style="width: 26%;" class="imgQrcodeVazio" (tap)="achei(pista.id_pista,pista.nu_codigoValidacaoPista)">
+                <img *ngIf="pista.status==2" src="assets/imgs/qrcodeok.svg" style="width: 26%;" class="imgQrcodeOk">
+                <img *ngIf="pista.status==3" src="assets/imgs/qrcodeerro.svg" style="width: 26%;" class="imgQrcodeOk">
+
+                <div *ngIf="pista.status==3" class="labelErro">Ops! Este <b>não é o qrcode correto</b>!<br>Procure o correto para liberar a próxima pista.</div>
+
+                <button *ngIf="pista.status==1 || pista.status==3" ion-button class="botaoAchei" (tap)="achei(pista.id_pista,pista.nu_codigoValidacaoPista)" >ACHEI O QRCODE!</button>
+                <button *ngIf="pista.status==2 && !jogoFim" ion-button class="botaoProximo" (tap)="proxima()" >PRÓXIMA PISTA ></button>
+                <button *ngIf="pista.status==2 && jogoFim" ion-button class="botaoProximo" (tap)="proxima()" >ENCERRAR JOGO ></button>
+        </div>
+
+      <div *ngIf="pista.status==0">
+        <div *ngIf="!last" class="labelTituloPista">Pista {{pista.nu_ordem}}</div>
+        <div *ngIf="last" class="labelTituloPista">Última Pista!</div>
+        <img src="assets/imgs/lock.svg" style="width: 26%;" class="cadeado" >
+      </div>
+
+
+      </ion-slide>
+
+
+      <ion-slide >
+
+        <div *ngIf="jogoFim" class="conteinerParabens">
+          <img src="assets/imgs/medal.svg" style="width: 60%;">
+          <div class="labelParabens">Parabéns!</div>
+          <div class="labelSubParabens">Você chegou ao final da caça ao tesouro!</div>
+
+          <button  ion-button class="botaoSair" (tap)="fechar()" >SAIR</button>
+
+        </div>
+
+
+      </ion-slide>
+
+
+</ion-slides>
+-->
+
+
+</ion-content>

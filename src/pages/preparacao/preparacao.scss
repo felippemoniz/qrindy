@@ -1,0 +1,56 @@
+.imgPreparacao{
+  width: 100%;
+      text-align: center;
+      margin-top: 50px;
+      animation-name: fadeIn;
+      animation-duration: 1s;
+}
+
+.tituloPreparado{
+  margin-top: 75px;
+      width: 100%;
+      text-align: center;
+      font-size: 23px;
+      font-family: Montserrat-Bold;
+      color: #FFFFFF;
+
+}
+
+.subTituloPreparado{
+  margin-top: 12px;
+  width: 100%;
+  text-align: center;
+  font-size: 17px;
+  font-family: Montserrat-Regular;
+  color: #FFFFFF;
+  letter-spacing: -0.8px;
+  margin-top: 20px;
+}
+
+.botaoIniciarCacada{
+  background: #E38787;
+      border-radius: 5px;
+      position: absolute;
+      text-align: center;
+      width: 90%;
+      margin-top: 0px;
+      /* margin-left: -169px; */
+      font-family: Montserrat-Bold;
+      font-size: 14px;
+
+}
+
+.divBotalIniciar{
+  width: 10%;
+    text-align: center;
+    margin-top: 92px;
+}
+
+.botaoFechar{
+    font-size: 42px;
+    width: 100%;
+    text-align: right;
+    padding-right: 15px;
+    position: absolute;
+    color: #FFFFFF;
+}

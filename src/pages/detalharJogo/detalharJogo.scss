@@ -1,0 +1,98 @@
+.labelDetalheNomeJogo{
+  font-family: Montserrat-Bold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -1.01px;
+  color: #FFFFFF;
+  position: absolute;
+  margin-top: 46px;
+  margin-left: 12px;
+}
+
+.labelDetalhesPistasJogo{
+  font-family: Montserrat-Regular;
+      font-style: normal;
+      font-size: 13px;
+      line-height: 16px;
+      letter-spacing: -0.32px;
+      color: #FFFFFF;
+      position: absolute;
+      margin-top: 76px;
+      margin-left: 12px;
+}
+
+.botaoVoltar{
+  color: #FFFFFF;
+    position: absolute;
+    font-size: 24px;
+    z-index: 99;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+.boxProgressoJogo{
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.322803);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.322803);
+  border-radius: 4px;
+  width: 93%;
+  height: 86px;
+  position: absolute;
+  margin-top: 149px;
+  margin-left: 12px;
+}
+
+.boxOpcoesJogo{
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.322803);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.322803);
+  border-radius: 4px;
+  width: 93%;
+  height: 356px;
+  position: absolute;
+  margin-top: 260px;
+  margin-left: 12px;
+}
+
+.botaoOpcoesDetalheJogo{
+  background: #F8F8F8;
+  border: 1px solid #CDCDCD;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 92%;
+  height: 43px;
+  position: absolute;
+  margin-top: 111px;
+  margin-left: 12px;
+}
+
+
+.labelBotaoDetalhesJogo{
+  font-style: normal;
+      font-weight: bold;
+      font-size: 13px;
+      line-height: 16px;
+      letter-spacing: -0.761905px;
+      color: #646464;
+      position: absolute;
+      margin-top: -24px;
+      margin-left: 63px;
+}
+
+.icoBotaoDetalhes{
+  margin-top: 8px;
+  margin-left: 12px;
+}
+
+.divisorVerticalPequeno{
+  opacity: 0.48;
+  border: 1px solid #cdcaca;
+  height: 32px;
+  width: 1px;
+  position: absolute;
+  margin-top: -32px;
+  margin-left: 50px;
+}
