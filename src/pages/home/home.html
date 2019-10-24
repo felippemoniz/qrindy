@@ -1,9 +1,12 @@
 <ion-content class="backgroundGeral">
 
-<div><img src="assets/imgs/header.svg" style="width: 100%;position: absolute;"></div>
+<div><img src="assets/imgs/headerSolid.svg" style="width: 100%;position: absolute;"></div>
 
+<div class="iconeTituloCriar"><ion-icon name="md-star"></ion-icon></div>
 <div class="labelTituloCriar">Criar um novo jogo</div>
-<div class="labelSubTituloCriar">Crie um novo jogo ou carregue um já criado</div>
+<div class="labelSubTituloCriar">Crie algo novo aqui!</div>
+
+<div class="maskHome" *ngIf="modal==true" (click)="fechaModal()"></div>
 
 
 <ion-slides  pager="false" class="slidesDestaques" slidesPerView="1.6" spaceBetween="1">
@@ -23,8 +26,8 @@
         <div class="icoCardCriar"><img src="assets/imgs/icoCodigo.svg" ></div>
         <div class="bgCardCriar" style="margin-top: -17px;margin-right: 4px;"><img src="assets/imgs/icoCampoCodigo.svg" ></div>
         <div class="tituloCard">Recebeu um Código?</div>
-        <div class="subTituloCard">Alguém enviou o código de um jogo pra você?</div>
-        <div class="botaoCard">INFORMAR</div>
+        <div class="subTituloCard">Informe o código e baixe o jogo de alguém</div>
+        <div class="botaoCard" (click)="abreModal()">INFORMAR</div>
       </div>
     </ion-slide>
 
@@ -45,16 +48,65 @@
 <div class="divisordestaque"></div>
 </div>
 
-
+<div class="iconeTituloJogar"><ion-icon name="ios-happy"></ion-icon></div>
 <div class="labelTituloJogar">Hora de Jogar!</div>
 <div class="labelSubTituloJogar">Tudo que você criou está aqui</div>
 
-<div class="listaJogos" *ngIf="listaJogos">
+<div class="listaJogos" >
     <div class="itemJogo" *ngFor=" let jogo of listaJogos" (click)="detalharJogo(jogo.id_jogo)">
-        <img src="assets/imgs/imgTipoQR.svg" style="margin-top: 20px;margin-left: 12px;">
+        <img src="assets/imgs/imgTesouroHome.svg" style="margin-top: 20px;margin-left: 12px;    height: 30px;">
         <div class="labelTituloJogoCriado">{{jogo.nm_jogo}}</div>
         <div class="labelQtPistasJogoCriado">Este jogo tem <b>{{jogo.qtPistas}} pistas!</b></div>
+        <div class="linhaHorizontalHome"></div>
+        <div class="dtJogo">Você <b>criou este jogo</b> em {{converteData(jogo.dt_criacao)}}</div>
     </div>
 </div>
+
+<div style="height:30px"></div>
+<div  *ngIf="qtJogos == 0" class="divEstadoVazio">
+      <img src="assets/imgs/estadoVazioJogos.svg" class="imgEstadoVazio">
+      <div class="labelEstadoVazio">As coisas andam meio paradas por aqui.<br>Que tal criar um jogo hoje?</div>
+</div>
+
+
+
+
+<div *ngIf="modal==true" class="modalCodigo">
+  <div class="botaoFecharModal"><ion-icon name="ios-close" (click)="fechaModal()" style="padding: 6px;"></ion-icon></div>
+
+<div  class="divCodigosHome">
+  <ion-grid >
+    <ion-row >
+      <ion-col col-2 (click)="habilitaTeclado(1)"><div [ngClass]="numeroAtivoCodigo=='1' ? 'numeroCodigoAtivo' : 'numeroCodigo'">{{inputCodigo1}}</div></ion-col>
+      <ion-col col-2 (click)="habilitaTeclado(2)"><div [ngClass]="numeroAtivoCodigo=='2' ? 'numeroCodigoAtivo' : 'numeroCodigo'">{{inputCodigo2}}</div></ion-col>
+      <ion-col col-2 (click)="habilitaTeclado(3)"><div [ngClass]="numeroAtivoCodigo=='3' ? 'numeroCodigoAtivo' : 'numeroCodigo'">{{inputCodigo3}}</div></ion-col>
+      <ion-col col-2 (click)="habilitaTeclado(4)"><div [ngClass]="numeroAtivoCodigo=='4' ? 'numeroCodigoAtivo' : 'numeroCodigo'">{{inputCodigo4}}</div></ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col col-8 class="textoInformeCodigo" >Informe o código do Jogo acima</ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
+<div class="tecladoHome">
+  <div class="row" style="height: 66px;">
+    <div class="numeroCodigoTeclado" (click)="confirmaNumero('1')">1</div>
+    <div class="numeroCodigoTeclado" (click)="confirmaNumero('2')">2</div>
+    <div class="numeroCodigoTeclado" (click)="confirmaNumero('3')">3</div>
+    <div class="numeroCodigoTeclado" (click)="confirmaNumero('4')">4</div>
+    <div class="numeroCodigoTeclado" (click)="confirmaNumero('5')">5</div>
+  </div>
+  <div class="row" style="height: 66px;">
+    <div class="numeroCodigoTeclado" (click)="confirmaNumero('6')" >6</div>
+    <div class="numeroCodigoTeclado" (click)="confirmaNumero('7')" >7</div>
+    <div class="numeroCodigoTeclado" (click)="confirmaNumero('8')" >8</div>
+    <div class="numeroCodigoTeclado" (click)="confirmaNumero('9')" >9</div>
+    <div class="numeroCodigoTeclado" (click)="confirmaNumero('0')">0</div>
+  </div>
+</div>
+
+    <button  ion-button class="botaoBaixarJogo" style="height: 44px; margin-top: 22px;" (tap)="baixarJogo()">BAIXAR JOGO</button>
+</div>
+
 
 </ion-content>

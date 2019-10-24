@@ -6,10 +6,23 @@
 <div class="botaoFechar"><ion-icon name="ios-close" (click)="fechar()"></ion-icon></div>
 
 
-<div class="tituloPreparado">Preparado para começar?</div>
-<div class="imgPreparacao"><img src="assets/imgs/imgTesouro.svg" style="width: 55%;"></div>
-<div class="subTituloPreparado">Encontre <b>todos os qrcodes</b> para<br> liberar as pistas até chegar ao final<br> do desafio!</div>
-<div class="divBotalIniciar">
-<button ion-button class="botaoIniciarCacada" (tap)="iniciarJogo()" >COMEÇAR A CAÇADA!</button>
+<div class="tituloPreparado">VAMOS COMEÇAR?</div>
+
+<div class="passo1">
+  <div class="imgPrep1"><img src="assets/imgs/imgPrep1.svg"  ></div>
+  <div class="labelPrep1">Leia a pista com atenção e tente descobrir onde você deve ir.</div>
 </div>
+<img src="assets/imgs/imgPrepSeta.svg"  class="imgSeta">
+<div class="passo2">
+  <div class="imgPrep1"><img src="assets/imgs/imgPrep2.svg"  ></div>
+  <div class="labelPrep1" style="margin-top: 8%;">Encontrou o QRCode (ou código)? Ótimo! Escaneie (ou digite o código) para conseguir a próxima pista!</div>
+</div>
+<img src="assets/imgs/imgPrepSeta.svg"  class="imgSeta">
+<div class="passo3">
+  <div class="imgPrep1" style="margin-left: 2px;margin-top: 9%;"><img src="assets/imgs/imgPrep3.svg"  ></div>
+  <div class="labelPrep1" style="margin-top: 7%;">Siga todas as pistas para vencer o jogo! E torcer para que ao final exista um prêmio bem legal pra você!</div>
+</div>
+
+<button ion-button class="botaoIniciarCacada" (tap)="iniciarJogo()" >COMEÇAR A CAÇADA!</button>
+
 </ion-content>

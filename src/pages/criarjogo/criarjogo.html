@@ -3,38 +3,64 @@
 <div class="botaoVoltar" style="color:#FFFFFF" (click)="voltar()"><ion-icon name="md-arrow-back" ></ion-icon></div>
 
 <div class="bgCardCriar"><img src="assets/imgs/imgLupaCriar.svg" ></div>
-<div><img src="assets/imgs/header.svg" style="width: 100%;position: absolute;z-index: -10;"></div>
+<div><img src="assets/imgs/headerSolid.svg" style="width: 100%;position: absolute;z-index: -10;"></div>
 <div class="labelTituloCriarInterno">Caça ao QRCode</div>
 <div class="labelSubTituloCriarInterno">Aqui você vai criar seu jogo! Seja criativo!</div>
 
+
+<!-- ############# BOX 1 ############ -->
 <div class="boxPasso1">
-<ion-badge  item-end class="badgePasso">1</ion-badge>
-<div class="labelTituloPasso">Qual é o nome que você quer dar para este jogo?</div>
-<div class="labelSubTituloPasso">Ex: Jogo de Aniversário, Caça Surpresa, etc...</div>
-<ion-input *ngIf="idJogo==null" class="inputNomeJogo" [(ngModel)]="inputNomeJogo" type="text"></ion-input>
-<div *ngIf="idJogo!=null"class="inputNomeJogoGravado">{{inputNomeJogo}}</div>
 
- <button  *ngIf="idJogo==null" ion-button class="botaoCriarJogo" (click)="criarJogo()" >CRIAR</button>
-</div> 
+    <ion-badge  item-end class="badgePasso">Passo 1</ion-badge>
+    <div class="labelTituloPasso">Qual é o nome que você quer dar para este jogo?</div>
+    <div class="labelSubTituloPasso">Ex: Jogo de Aniversário, Caça Surpresa, etc...</div>
 
-<div class="boxPasso2" *ngIf="flagNomeInformado==true">
-    <ion-badge  item-end class="badgePasso">2</ion-badge>
-    <div class="labelTituloPasso">Hora de adicionar as pistas! Toque no botão abaixo para criar uma nova pista:</div>
-
-    <div class="boxAdicionar" (click)="adicionarPistas(idJogo)"><ion-icon name="add"></ion-icon> &nbsp;Incluir Pista</div>
-
-    <div class="boxPista" *ngFor=" let pista of listaPistas" (click)="editarPista(pista.id_pista)">
-      <img *ngIf="pista.tp_pista==1" src="assets/imgs/qrcodeMini.svg" class="imgQrcodemini">
-      <div *ngIf="pista.tp_pista==2" class="labelPistaCodigo">{{pista.nu_codigoValidacaoPista}}</div>
-      <div class="labelNumeroPista">Pista {{pista.nu_ordem}}</div>
-      <div class="labelPreviewTextoPista"> {{pista.txt_pista}}</div>
+    <div *ngIf="modoDaTela=='I'">
+        <ion-input *ngIf="idJogo==null" class="inputNomeJogo" [(ngModel)]="inputNomeJogo" type="text" maxlength="40" placeholder="Escreva aqui o nome do seu jogo"></ion-input>
+        <div *ngIf="idJogo!=null" class="inputNomeJogoGravado">{{inputNomeJogo}}</div>
+        <button  *ngIf="idJogo==null" ion-button class="botaoCriarJogo" (click)="criarJogo()" >CRIAR</button>
     </div>
 
+    <div *ngIf="modoDaTela=='A'">
+        <ion-input  class="inputNomeJogo" [(ngModel)]="inputNomeJogo" type="text" maxlength="40" placeholder="Escreva aqui o nome do seu jogo">{{inputNomeJogo}}</ion-input>
+    </div>
 
- <button ion-button class="botaoCriarJogo" style="margin-top:32px" (click)="finalizarPistas()">FINALIZAR</button>
+</div>
+
+
+<!-- ############# BOX 2 ############ -->
+<div class="boxPasso2" style="min-height: 183px;" *ngIf="flagNomeInformado==true">
+    <ion-badge  item-end class="badgePasso">Passo 2</ion-badge>
+    <div class="labelTituloPasso" style="padding-top: 33px;">Hora de adicionar as pistas! Toque no botão abaixo para criar uma nova pista:</div>
+
+    <div class="boxPista" *ngFor=" let pista of listaPistas" (click)="editarPista(pista.id_pista)">
+      <img *ngIf="pista.tp_pista==2" src="assets/imgs/qrcodeMini.svg" class="imgQrcodemini">
+      <div *ngIf="pista.tp_pista==1" class="labelPistaCodigo">{{pista.nu_codigoValidacaoPista}}</div>
+      <div class="labelNumeroPista">Pista {{pista.nu_ordem}}</div>
+      <div class="labelPreviewTextoPista"> {{formataExibicao(pista.txt_pista)}}</div>
+    </div>
+    <div class="divBotaoFab" (click)="adicionarPistas(idJogo)"><ion-icon name="add" class="botaoFab"></ion-icon></div>
+
+</div>
+
+<!-- ############# BOX 3 ############ -->
+<div class="boxPasso2" style="margin-top: 45px;" *ngIf="flagNomeInformado==true">
+    <ion-badge  item-end class="badgePasso">Passo 3</ion-badge>
+    <div class="labelTituloPasso" style="padding-top: 33px;">Aqui você vai escrever a mensagem que vai aparecer para o seu jogador quando ele chegar ao final do jogo!</div>
+    <div class="labelSubTituloPasso">Aqui você pode dar parabéns ao seu jogador e indicar onde está seu prêmio por exemplo ;-)</div>
+
+    <textarea  type="text" [(ngModel)]="inputMensagemTesouro" placeholder="" maxLength="1500" class="descricaoMensagemFinal" ></textarea>
+
 <br><br>
 </div>
 
+
+
+<button *ngIf="modoDaTela=='I' && flagNomeInformado==true" ion-button class="botaoCriarJogo" style="margin-top:32px" (click)="finalizarPistas()">GRAVAR ESTE JOGO!</button>
+<button *ngIf="modoDaTela=='A' && flagNomeInformado==true" ion-button class="botaoCriarJogo" style="margin-top:32px" (click)="alterarJogo()">GRAVAR ALTERAÇÕES</button>
+
+
+<div style="height:50px"></div>
 
 
 </ion-content>

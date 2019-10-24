@@ -1,0 +1,126 @@
+
+/*
+.swiper-pagination {
+    bottom:  50px;
+}
+*/
+/*
+.slide-zoom {
+    height: 100%;
+}
+*/
+
+.tituloOnboarding{
+  text-align: left;
+margin-left: 13px;
+color: #ffffff;
+font-weight: bold;
+font-size: 22px;
+font-family: Montserrat-Bold;
+position: absolute;
+bottom: 160px;
+left: 0;
+}
+
+.textoOnboarding{
+  text-align: left;
+margin-left: 13px;
+color: #ffffff;
+/* font-weight: bold; */
+font-size: 18px;
+font-family: Montserrat-SemiBold;
+/* margin-bottom: -178px; */
+position: absolute;
+bottom: 101px;
+left: 0;
+}
+
+
+.backgroundPasso1{
+background-image: url(../assets/imgs/splash1.png);
+background-size: 100%;
+background-repeat:no-repeat;
+}
+
+.backgroundPasso2{
+background-image: url(../assets/imgs/splash2.png);
+background-size: 100%;
+background-repeat:no-repeat;
+}
+
+
+.footOnBoard{
+
+  width: 100%;
+  height: 43px;
+  position: absolute;
+  margin-top: -41px;
+  z-index: 99;
+}
+
+.linkPular{
+  float: left;
+  margin-top: 14px;
+  margin-left: 12px;
+  font-size: 13px;
+  color: #9a9a9a;
+  font-weight: 600;
+}
+
+.linkProximo{
+  float: right;
+      margin-top: -28px;
+      margin-right: 23px;
+      font-size: 46px;
+      color: #fbfbfb;
+      font-weight: 600;
+}
+
+/*
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 50px;
+}
+/*
+.swiper-pagination-bullet-active {
+    background: #ffffff;
+}
+*/
+.setaDireita{
+  position: absolute;
+    margin-left: 6px;
+    margin-top: 1px;
+}
+
+
+/* ######## Espeficio para iPhone ######### */
+.platform-ios  .footOnBoard{
+  margin-top: -45px;
+}
+
+
+/* ###### Específico para smartphones com 4 polegadas ###### */
+
+@media screen and (max-width: 320px) and (max-height: 568px) {
+
+
+}
+
+
+
+/* ###### Específico NEXUS, Motorola, etc. ###### */
+
+@media screen and (max-width: 360px) and (max-height: 640px) {
+
+
+
+}
+
+
+
+/* ###### Específico para galaxy s8 e iphone X ###### */
+
+@media only screen and (min-height: 740px) {
+
+
+
+}

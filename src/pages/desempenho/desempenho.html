@@ -1,0 +1,37 @@
+
+
+
+<ion-content class="backgroundJogar">
+
+<div class="botaoFechar" (click)="fechar()"><ion-icon name="ios-close" ></ion-icon></div>
+<div class="bgDesempenho"></div>
+<div class="iconeDesempenho"><img src="assets/imgs/imgEstatisticas.svg" style="width: 28%;"></div>
+<div class="labelTituloTempo">Você levou <span class="labelTempoBold">{{converteTempoTotalAmigavel(tempoTotalMilisegundos)}}</span> para terminar este jogo</div>
+
+<div class="cardDesempenho">
+
+      <div class="labelTituloTabelaTempos">Quanto tempo você levou em cada pista?</div>
+
+      <div class="barra" *ngFor="let pista of listaPistas">
+          <ion-grid>
+            <ion-row style="margin-left: -9px;">
+              <ion-col col-4><div class="labelNomePista">Pista {{pista.nu_ordem}}</div></ion-col>
+              <ion-col col-8><div class="labelTempo">{{pista.tempoTotal}}</div></ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <div class="barraProgresso" [ngStyle]="{'width': pista.percentual}"></div>
+          <div class="barraResto"></div>
+      </div>
+
+      <button  ion-button class="botaoSairJogo " (tap)="fechar()">FECHAR</button>
+
+      <div style="height:30px"></div>
+
+
+
+
+
+</div>
+
+</ion-content>

@@ -2,18 +2,20 @@
 
 <div class="botaoVoltar" style="color:#FFFFFF" (click)="voltar()"><ion-icon name="md-arrow-back" ></ion-icon></div>
 
-<div><img src="assets/imgs/bgDetalhes.svg" style="width: 100%;position: absolute;"></div>
+<div><img src="assets/imgs/headerDetalhes.svg" style="width: 100%;position: absolute;"></div>
 <div class="labelDetalheNomeJogo">{{nomeJogo}}</div>
-<div class="labelDetalhesPistasJogo">Este jogo possui {{qtPistas}} pistas (qrcodes)</div>
+<div class="labelDetalhesPistasJogo">Este jogo possui {{qtPistas}} pistas </div>
 
 <div class="boxProgressoJogo">
 
+
+  <div class="labelProgresso">PROGRESSO NESTE JOGO</div>
   <div class="listaPistasDetalhes">
         <span *ngFor="let pista of listaPistas">
           <img *ngIf="pista.status!=2" src="assets/imgs/slotPistaVazio.svg" style="width: 6%;margin-right: 2px;">
           <img *ngIf="pista.status==2" src="assets/imgs/checked.svg" class="delayStatus" style="width: 6%;margin-right: 2px;">
         </span>
-        <img src="assets/imgs/treasure.svg" style="width: 8%;">
+        <img src="assets/imgs/imgTrofeu.svg" style="width: 8%;">
   </div>
 
 </div>
@@ -21,27 +23,36 @@
 
 <div class="boxOpcoesJogo">
 
-<button  ion-button class="botaoCriarJogo" style="height: 44px;" (tap)="jogar(idJogo, nomeJogo, qtPistas)">JOGAR AGORA</button>
+<button  ion-button class="botaoJogar" style="height: 44px;" (tap)="jogar(idJogo, nomeJogo, qtPistas,mensagemTesouro)">JOGAR AGORA</button>
+
+<ion-grid style="width: 93%; margin-top: 8px;">
+  <ion-row>
+    <ion-col col-5 class="linhaHorizontalOU"></ion-col>
+    <ion-col col-2 class="labelOU">OU</ion-col>
+    <ion-col col-5 class="linhaHorizontalOU"></ion-col>
+  </ion-row>
+</ion-grid>
+
 
 <div class="botaoOpcoesDetalheJogo" (click)="reiniciaJogo(idJogo)">
   <img src="assets/imgs/icoReiniciar.svg" class="icoBotaoDetalhes">
   <div class="divisorVerticalPequeno"></div>
-  <div class="labelBotaoDetalhesJogo"><b>Reiniciar</b> este jogo</div>
+  <div class="labelBotaoDetalhesJogo"><b>Reiniciar</b> o progresso deste jogo</div>
 </div>
 
-<div class="botaoOpcoesDetalheJogo" style="margin-top: 165px;">
+<div class="botaoOpcoesDetalheJogo" (click)="exportarJogo()">
   <img src="assets/imgs/icoCompartilhar.svg" class="icoBotaoDetalhes">
   <div class="divisorVerticalPequeno"></div>
   <div class="labelBotaoDetalhesJogo"><b>Enviar</b> este jogo para alguém</div>
 </div>
 
-<div class="botaoOpcoesDetalheJogo" style="margin-top: 219px;">
+<div class="botaoOpcoesDetalheJogo"  (click)="alterarJogo(idJogo)">
   <img src="assets/imgs/icoEditar.svg" class="icoBotaoDetalhes">
   <div class="divisorVerticalPequeno"></div>
-  <div class="labelBotaoDetalhesJogo"><b>Ver detalhes/alterar</b> este jogo</div>
+  <div class="labelBotaoDetalhesJogo"><b>Ver detalhes / alterar</b> este jogo</div>
 </div>
 
-<div class="botaoOpcoesDetalheJogo" style="margin-top: 274px;" (click)="excluirJogo(idJogo)">
+<div class="botaoOpcoesDetalheJogo"  (click)="excluirJogo(idJogo)">
   <img src="assets/imgs/icoApagar.svg" class="icoBotaoDetalhes">
   <div class="divisorVerticalPequeno"></div>
   <div class="labelBotaoDetalhesJogo"><b>Apagar</b> este jogo</div>
@@ -50,5 +61,18 @@
 
 </div>
 
+<div class="mask" *ngIf="modal==true" (click)="fechaModal()"></div>
+
+<div *ngIf="modal==true" class="modalCompartilhar">
+  <div class="botaoFecharModal"><ion-icon name="ios-close" (click)="fechaModal()" style="padding: 6px;"></ion-icon></div>
+
+    <div class="imgCompartilhar"><img src="assets/imgs/imgCompartilhar.svg" style="height: 81px;" ></div>
+    <div class="labelCodigoCompartilhar">{{codigoAleatorioFinal}}</div>
+    <div class="dtValidade">Código válido por 7 dias (até 12/12/2019)</div>
+    <div class="labelTextoCompartilhar">Informe o código acima e outros jogadores<br>
+poderão baixar este jogo que você criou!</div>
+
+    <button  ion-button class="botaoJogar" style="height: 44px; margin-top: 22px;" (tap)="compartilhar()">COMPARTILHAR</button>
+</div>
 
 </ion-content>

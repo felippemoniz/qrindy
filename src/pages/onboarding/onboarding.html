@@ -1,0 +1,61 @@
+<ion-content class="backgroundOnboarding">
+
+<ion-slides  (ionSlideDidChange)="mudouSlide()" pager="true" >
+
+
+  <ion-slide class="backgroundPasso1">
+    <div class="tituloOnboarding">Bem vindo ao<br>QRCodie!</div>
+    <div class="textoOnboarding">O Jogo de caça ao tesouro<br>reimaginado para smartphones!</div>
+  </ion-slide>
+
+
+
+  <ion-slide class="backgroundPasso2">
+    <div class="tituloOnboarding">Bem vindo ao<br>QRCodie!</div>
+    <div class="textoOnboarding">O Jogo de caça ao tesouro<br>reimaginado para smartphones!</div>
+
+  </ion-slide>
+
+
+  <ion-slide class="backgroundPasso2">
+    <div class="tituloOnboarding">Bem vindo ao<br>QRCodie!</div>
+    <div class="textoOnboarding">O Jogo de caça ao tesouro<br>reimaginado para smartphones!</div>
+
+  </ion-slide >
+
+
+  <ion-slide class="backgroundPasso2">
+    <div class="tituloOnboarding">Bem vindo ao<br>QRCodie!</div>
+    <div class="textoOnboarding">O Jogo de caça ao tesouro<br>reimaginado para smartphones!</div>
+
+  </ion-slide>
+
+
+  <ion-slide class="backgroundPasso2">
+    <div class="tituloOnboarding">Bem vindo ao<br>QRCodie!</div>
+    <div class="textoOnboarding">O Jogo de caça ao tesouro<br>reimaginado para smartphones!</div>
+
+  </ion-slide>
+
+
+  <ion-slide class="backgroundPasso2">
+    <div class="tituloOnboarding">Bem vindo ao<br>QRCodie!</div>
+    <div class="textoOnboarding">O Jogo de caça ao tesouro<br>reimaginado para smartphones!</div>
+
+  </ion-slide>
+
+
+
+
+</ion-slides>
+
+<div class="footOnBoard">
+  <div class="linkPular" (tap)="fechar()">PULAR</div>
+  <div *ngIf="!flagUltimoSlide"  class="linkProximo" (tap)="proximaTela()"><ion-icon name="ios-arrow-dropright-circle-outline"></ion-icon></div>
+  <div *ngIf="flagUltimoSlide"  class="linkProximo" (tap)="fechar()"><ion-icon name="ios-arrow-dropright-circle-outline"></ion-icon></div>
+</div>
+
+
+
+
+</ion-content>

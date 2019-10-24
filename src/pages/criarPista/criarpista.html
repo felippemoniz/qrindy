@@ -2,20 +2,20 @@
 
 <div class="botaoVoltar" style="color:#FFFFFF" (click)="voltar()"><ion-icon name="md-arrow-back" ></ion-icon></div>
 
-<div *ngIf="idPista!=null" class="botaoExcluir" style="color:#FFFFFF" (click)="excluirPista(idPista)"><ion-icon name="md-trash"></ion-icon></div>
+<div *ngIf="idPista!=null" class="botaoExcluir" style="color:#FFFFFF" (click)="excluirPista(idPista)"><ion-icon name="md-close-circle"></ion-icon></div>
 
 
 
-<div><img src="assets/imgs/header.svg" style="width: 100%;position: absolute;z-index: -10;"></div>
+<div><img src="assets/imgs/headerBlur.svg" style="width: 100%;position: absolute;z-index: -10;"></div>
 
 
 <div class="boxCriaPista">
-<div class="divNumeroPista">Pista 2</div>
+<div class="divNumeroPista">Pista {{posicaoPista}}</div>
 <ion-badge  item-end class="bullet" style="margin-top: 43px;">1</ion-badge>
 <div class="labelTituloDescricao" style="margin-top: 44px;">Escreva a pista que você dará ao seu jogador. Este é o lugar em que você vai esconder o qrcode:</div>
 
 
-<textarea  type="text" [(ngModel)]="inputDescricaoPista"  maxLength="1500" class="descricaoPista" ></textarea>
+<textarea  type="text" [(ngModel)]="inputDescricaoPista" placeholder="Estou escondido em um lugar..." maxLength="1500" class="descricaoPista" ></textarea>
 
 
 
@@ -35,9 +35,10 @@
   <ion-list *ngSwitchCase="'qrcode'">
     <ion-badge  item-end class="bullet">2</ion-badge>
     <div class="labelTituloDescricao">Agora escaneie um QRCode que será escondido:</div>
-    <div class="imgQrCodeCadastro"  (tap)="escanearQRCODE()">
-      <img *ngIf="scannedCode==null" src="assets/imgs/imgQrcodeCadastro.svg" >
-      <img *ngIf="scannedCode!=null" src="assets/imgs/imgQrcodeCadastroOk.svg" >
+    <div *ngIf="scannedCode!=null"  class="labelToqueAqui" (tap)="escanearQRCODE()">Toque aqui<br>para escanear o QRCode</div>
+    <div class="imgQrCodeCadastro">
+      <img *ngIf="scannedCode!=null" src="assets/imgs/imgQrcodeCadastro.svg" >
+      <img *ngIf="scannedCode==null" src="assets/imgs/imgQrcodeCadastroOk.svg" >
     </div>
   </ion-list>
 
@@ -50,8 +51,8 @@
 </div>
 
 
- <button ion-button class="botaoCriarJogo" (click)="criarPista()" >INCLUIR ESTA PISTA</button>
-
+ <button *ngIf="modoDaTela=='I'" ion-button class="botaoCriarJogo" (click)="criarPista()" >INCLUIR ESTA PISTA</button>
+ <button *ngIf="modoDaTela=='A'" ion-button class="botaoCriarJogo" (click)="alterarPista()" >ALTERAR ESTA PISTA</button>
 
 </div>
 

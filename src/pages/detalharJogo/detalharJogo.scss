@@ -9,22 +9,153 @@
   position: absolute;
   margin-top: 46px;
   margin-left: 12px;
+  width: 347px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.imgCompartilhar{
+  text-align: center;
+    margin-top: 40px;
+}
+
+.labelCodigoCompartilhar{
+  font-family: Montserrat-SemiBold;
+    text-align: center;
+  font-size: 33px;
+    margin-top: 15px;
+    letter-spacing: 8px;
+    color: #465d6d;
+}
+
+.mask {
+    background: rgba(0,0,0,0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation-name: escureceFundo;
+    animation-duration: 0.3s;
+}
+
+.labelTextoCompartilhar{
+  font-family: Montserrat-SemiBold;
+  text-align: center;
+  margin-top: 22px;
+}
+
+.dtValidade{
+  text-align: center;
+  color: gray;
+  font-size: 11px;
+}
+
+.botaoFecharModal {
+    font-size: 42px;
+    width: 100%;
+    text-align: right;
+    padding-right: 15px;
+    position: absolute;
+    color: #53558f;
+    z-index: 99;
+}
+
+@keyframes sobeModal {
+    from {
+        bottom: -42.06%;
+    }
+    to {
+      bottom: 7.94%
+    }
+  }
+
+
+  @keyframes escureceFundo {
+      from {
+          opacity: 0;
+      }
+      to {
+        bottom: 1;
+      }
+    }
+
+
+
+  .modalCompartilhar{
+    position: absolute;
+    left: 2.67%;
+    right: 2.67%;
+    bottom: 7.94%;
+    height: 50%;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14739);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14739);
+    border-radius: 5px;
+
+    animation-name: sobeModal;
+    animation-duration: 0.3s;
+
+  }
+
+
+.labelProgresso {
+    font-family: Montserrat-Bold;
+    text-align: center;
+    color: #575656;
+    margin-top: 13px;
+    font-size: 12px;
+}
+
+.linhaHorizontalOU{
+  opacity: 0.48;
+    border-bottom: 1px solid #979797;
+    top: -12px;
+}
+
+.labelOU{
+  text-align: center;
+  font-family: Montserrat-Bold;
+  color: #7275a7;
+}
+
+.linhaHorizontalOU{
+  opacity: 0.48;
+    border-bottom: 1px solid #979797;
+    top: -12px;
+}
+
+.botaoJogar {
+    background: #F4AA26;
+    border-radius: 3px;
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    width: 92%;
+    height: 33px;
+    margin-left: 12px;
+    line-height: 34px;
+    letter-spacing: -0.32px;
+    font-family: Montserrat-Bold;
+    margin-top: 13px;
 }
 
 .labelDetalhesPistasJogo{
-  font-family: Montserrat-Regular;
+  font-family: Montserrat-SemiBold;
       font-style: normal;
       font-size: 13px;
       line-height: 16px;
       letter-spacing: -0.32px;
-      color: #FFFFFF;
+      color: #e6e6e6;
       position: absolute;
       margin-top: 76px;
       margin-left: 12px;
 }
 
 .listaPistasDetalhes {
-    margin-top: 25px;
+    margin-top: 14px;
     text-align: center;
     height: 43px;
 }
@@ -70,22 +201,22 @@
   border-radius: 5px;
   width: 92%;
   height: 43px;
-  position: absolute;
-  margin-top: 111px;
+  margin-top: 11px;
   margin-left: 12px;
 }
 
 
 .labelBotaoDetalhesJogo{
-  font-style: normal;
-      font-weight: bold;
-      font-size: 13px;
-      line-height: 16px;
-      letter-spacing: -0.761905px;
-      color: #646464;
-      position: absolute;
-      margin-top: -24px;
-      margin-left: 63px;
+  /* font-style: normal; */
+  /* font-weight: bold; */
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -1px;
+  color: #646464;
+  position: absolute;
+  margin-top: -24px;
+  margin-left: 63px;
+  font-family: Montserrat-SemiBold;
 }
 
 .icoBotaoDetalhes{

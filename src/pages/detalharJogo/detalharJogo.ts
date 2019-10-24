@@ -3,12 +3,15 @@ import { NavController,NavParams,ViewController,ToastController,AlertController,
 import { DbProvider } from '../../providers/db/db';
 import { AuxiliarProvider } from '../../providers/auxiliar/auxiliar';
 import { PreparacaoPage } from '../preparacao/preparacao';
-import {Storage} from '@ionic/storage'
+import { Storage} from '@ionic/storage'
 import { LoadingController } from 'ionic-angular';
+import { CriarJogo } from '../criarjogo/criarjogo';
+import { CompartilharService } from '../../service/compartilhar-service';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'detalharJogo.html'
+  templateUrl: 'detalharJogo.html',
+  providers: [CompartilharService]
 })
 export class DetalharJogo {
 
@@ -18,12 +21,17 @@ export class DetalharJogo {
   public qtPistas;
   public progressoJogo =[];
   public listaPistas;
+  public mensagemTesouro;
+  public modal=false;
+  public jsonJogo;
+  public codigoAleatorioFinal;
 
   constructor(public navCtrl: NavController,
               private navParams: NavParams,
               public viewCtrl: ViewController,
               public storage: Storage,
               public dbProvider: DbProvider,
+              public compartilharService : CompartilharService,
               private alertCtrl: AlertController,
               public toastCtrl: ToastController = null,
               public modalCtrl: ModalController=null,
@@ -36,8 +44,14 @@ export class DetalharJogo {
   }
 
 
-  ionViewDidLoad() {
-    this.consultaProgresso();
+ionViewDidEnter(){
+  this.consultaProgresso();
+  this.consultarJogo(this.idJogo);
+
+}
+
+  alterarJogo(idJogo){
+    this.navCtrl.push(CriarJogo,{idJogo: idJogo, modoDaTela:'A'});
   }
 
 
@@ -48,7 +62,6 @@ export class DetalharJogo {
     });
 
     loading.present();
-    this.carregarListaPistas(this.idJogo)
 
     this.carregarListaPistas(this.idJogo).then (lista => {
           this.listaPistas = lista;
@@ -109,7 +122,7 @@ export class DetalharJogo {
 
   consultarJogo(idJogo){
 
-    this.dbProvider.initDB("","28");
+    this.dbProvider.initDB("","7");
     this.dbProvider.executeSql("select tbJogo.*, count(tbPista.id_pista)  qtPistas from " +
                               "tb_jogo tbJogo " +
                               "left join  tb_Pista tbPista " +
@@ -118,6 +131,8 @@ export class DetalharJogo {
                               " group by tbJogo.id_jogo").then( obj  => {
     this.nomeJogo = obj[0].nm_jogo;
     this.qtPistas = obj[0].qtPistas;
+    this.mensagemTesouro = obj[0].txt_mensagemFinal;
+    this.jsonJogo = obj;
 
     }, () => {
       console.log("Erro")
@@ -187,6 +202,33 @@ export class DetalharJogo {
     alert.present();
   }
 
+
+    exportarJogo(){
+      let alert = this.alertCtrl.create({
+        title: 'Enviar Jogo',
+        message: 'Deseja enviar este jogo para alguém? (Será gerado um código para você compartilhar com quem quiser)',
+        buttons: [
+          {
+            text: 'Não',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Sim!',
+            handler: () => {
+              this.prepararJSONParaExportar(this.idJogo)
+
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+
+
+
   zerarProgresso(id_jogo){
     this.storage.remove('progresso_'+id_jogo);
     this.consultaProgresso();
@@ -215,8 +257,9 @@ export class DetalharJogo {
   carregarListaPistas(idJogo){
 
     return new Promise((resolve, reject) => {
-            this.dbProvider.initDB("","28");
+            this.dbProvider.initDB("","7");
             this.dbProvider.executeSql("select *,0 as status from tb_Pista where id_jogo="+ idJogo ).then( obj  => {
+              console.log("Pistas--->" + JSON.stringify(obj))
             resolve(obj);
           }, (err) => {
             reject(err)
@@ -226,8 +269,9 @@ export class DetalharJogo {
   }
 
 
-  jogar(idJogo,nomeJogo,qtPistas){
-         let jogarModal = this.modalCtrl.create(PreparacaoPage,{idJogo:idJogo,nomeJogo:nomeJogo,qtPistas:qtPistas});
+  jogar(idJogo,nomeJogo,qtPistas,mensagemTesouro){
+
+         let jogarModal = this.modalCtrl.create(PreparacaoPage,{idJogo:idJogo,nomeJogo:nomeJogo,qtPistas:qtPistas,mensagemTesouro:mensagemTesouro});
          jogarModal.onDidDismiss(() => {
            this.consultaProgresso();
          });
@@ -236,8 +280,56 @@ export class DetalharJogo {
   }
 
 
+  prepararJSONParaExportar(idJogo){
+
+    var jsonPistas;
+    var codigoAleatorio;
+    var codigoEncontrado=true
+    var posicaoEncontrada;
+
+    let loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Exportando jogo...'
+    });
+
+    loading.present();
 
 
+    this.carregarListaPistas(idJogo).then (lista => {
+
+          this.jsonJogo[0].pistas = lista;
+          console.log("#######>" + JSON.stringify(this.jsonJogo[0]));
+
+          this.compartilharService.gravaJogo(this.jsonJogo[0]).subscribe(
+                      data => {
+                          console.log("JOGO GRAVADO" + data.insertId);
+                          this.abreModal(data.insertId)
+                      },
+                      err => {
+                          console.log("ERRO")
+                      },
+                      () => {
+                        loading.dismiss();
+                      }
+                  );
+
+          }, () => {
+            console.log("ERRO")
+          });
+  }
+
+
+
+
+
+  abreModal(codigoAleatorio){
+    this.codigoAleatorioFinal = codigoAleatorio;
+    this.modal = true;
+  }
+
+  fechaModal(){
+    this.modal = false;
+  }
 
 
 

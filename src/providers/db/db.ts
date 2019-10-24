@@ -43,8 +43,8 @@ export class DbProvider {
 
 
 
-
   public executeSql(sql: string, params?: any[]) {
+    //console.log("SQL ENVIADO:" + sql)
     return new Promise((resolve, reject) => {
       this.db.transaction(function (transaction) {
         transaction.executeSql(sql, params, function (transaction, result) {
@@ -130,7 +130,7 @@ export class DbProvider {
     values = ['(', values.join(',')];
     values.push(')');
     sql.push(') VALUES ');
-    console.log(sql.join('') + "---------" + values.join('') + "parametros:"+ params)
+    //console.log(sql.join('') + "---------" + values.join('') + "parametros:"+ params)
     return this.executeSqlInsert(sql.join('') + values.join(''), params);
   }
 
